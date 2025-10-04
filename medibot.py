@@ -5,6 +5,14 @@ from groq import Groq
 import os
 from datetime import datetime
 from dotenv import load_dotenv
+
+# ---------------- PAGE CONFIG ----------------
+st.set_page_config(
+    page_title="Medibot",
+    page_icon="🏥",
+    layout="wide"
+)
+
 load_dotenv()
 
 # ---------------- CONFIG ----------------
@@ -65,12 +73,6 @@ def generate_answer(question: str):
     except Exception as e:
         return "I'm experiencing technical difficulties. Please try again in a moment."
 
-# ---------------- PAGE CONFIG ----------------
-st.set_page_config(
-    page_title="Medibot",
-    page_icon="🏥",
-    layout="wide"
-)
 
 # ---------------- CUSTOM CSS ----------------
 st.markdown("""
@@ -98,39 +100,41 @@ st.markdown("""
     
     /* Fixed Header */
     .whatsapp-header {
-        background: linear-gradient(135deg, #075e54, #128c7e);
-        color: white;
-        padding: 35px 20px;
-        text-align: center;
-        border-bottom: 2px solid #128c7e;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        height: 150px;
-        box-sizing: border-box;
+    background: linear-gradient(135deg, #075e54, #128c7e);
+    color: white;
+    padding: 20px 20px;
+    text-align: center;
+    border-bottom: 2px solid #128c7e;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    height: 100px; /* reduced from 150px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centers heading vertically */
+    box-sizing: border-box;
     }
+
     
     .chatbot-title {
-        font-size: 18px;
-        font-weight: 500;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    display: block;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
-    
+
     .chatbot-subtitle {
-        font-size: 14px;
-        opacity: 0.95;
-        margin-top: 6px;
+        font-size: 12px; /* slightly smaller */
+        margin-top: 4px;
         font-weight: 400;
-        letter-spacing: 0.3px;
+        opacity: 0.95;
     }
+
     
     /* Chat Area */
     .chat-area {
@@ -410,6 +414,7 @@ st.markdown('<div class="input-area">', unsafe_allow_html=True)
 st.markdown('<div class="input-wrapper">', unsafe_allow_html=True)
 
 # Chat input
+   
 if prompt := st.chat_input("Ask me anything about health and medicine..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
     
@@ -417,7 +422,9 @@ if prompt := st.chat_input("Ask me anything about health and medicine..."):
         response = generate_answer(prompt)
         st.session_state.messages.append({"role": "assistant", "content": response})
     
-    st.rerun()
+    # Force Streamlit to immediately refresh and show the new message
+    st.experimental_rerun()
+
 
 st.markdown('</div>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
