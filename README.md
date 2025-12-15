@@ -39,17 +39,17 @@ ElevenLabs / gTTS -	Text-to-Speech (TTS)
 
 1️⃣ Clone Repository
 
-git clone 
-cd medibot
+-> git clone 
+-> cd medibot
 
 2️⃣ Create Virtual Environment
 
-python -m venv venv
-source venv/bin/activate   # Linux / Mac
-venv\Scripts\activate      # Windows
+-> python -m venv venv
+-> source venv/bin/activate   # Linux / Mac
+-> venv\Scripts\activate      # Windows
 
 3️⃣ Install Dependencies
-pip install -r requirements.txt
+-> pip install -r requirements.txt
 
 🔑 Environment Variables
 
