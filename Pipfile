@@ -4,13 +4,23 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pypdf = "*"
+groq = "*"
 langchain = "*"
 langchain-community = "*"
-faiss-cpu = "*"
-pypdf = "*"
-sentence-transformers = "*"
 langchain-huggingface = "*"
-groq = "*"
+faiss-cpu = "*"
+sentence-transformers = ">=2.6.0"
+transformers = "==4.41.0"
+python-dotenv = "*"
+tqdm = "*"
+pypdf2 = "*"
+pydub = "*"
+speechrecognition = "*"
+gtts = "*"
+elevenlabs = "*"
+pillow = "*"
+requests = "*"
 streamlit = "*"
 
 [dev-packages]
